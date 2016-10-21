@@ -2,9 +2,9 @@ buildscript {
     repositories {
         mavenCentral()
         jcenter()
-        maven {
-            url 'https://oss.sonatype.org/content/repositories/snapshots/'
-        }
+//        maven {
+//            url 'https://oss.sonatype.org/content/repositories/snapshots/'
+//        }
     }
     dependencies {
         // https://bitbucket.org/hvisser/android-apt/overview
@@ -16,7 +16,7 @@ buildscript {
 apply plugin: 'com.android.application'
 apply plugin: 'com.neenbedankt.android-apt'
 apply plugin: 'realm-android'
-apply plugin: 'maven'
+//apply plugin: 'maven'
 
 android {
     compileSdkVersion 23
@@ -68,7 +68,8 @@ dependencies {
 
     compile 'com.squareup:javapoet:1.7.0'
 // http://mvnrepository.com/artifact/org.jvnet.sorcerer/sorcerer-javac
-    compile group: 'org.jvnet.sorcerer', name: 'sorcerer-javac', version: '0.8'
+//    compile group: 'org.jvnet.sorcerer', name: 'sorcerer-javac', version: '0.8'
+//    compile 'org.jvnet.sorcerer:sorcerer-javac:0.8'
 }
 
-apply from: '../gradle-mvn-push.gradle'
+//apply from: '../gradle-mvn-push.gradle'

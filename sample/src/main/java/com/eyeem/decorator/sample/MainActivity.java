@@ -11,18 +11,36 @@ public class MainActivity extends DecoratedAct {
 
    @Override
    protected void onCreate(Bundle savedInstanceState) {
-
-      if (getIntent() == null ||
-            getIntent().getExtras() == null ||
-            !getIntent().getExtras().containsKey(KEY.BUILDER)) {
-         getIntent().putExtra(KEY.BUILDER, new Builder().addDecorator(EmptyInstigator.class));
-      }
-
-      bind(getBuilder(getIntent().getSerializableExtra(KEY.BUILDER)));
+      preEnsureBindInstigator(EmptyInstigator.class);
       super.onCreate(savedInstanceState);
+
       setContentView(getLayoutId());
       onViewInflated();
 
+      initRecyclerView();
+
+      onViewCreated();
+   }
+
+   /**
+    * bind the existing Instigator or create a new instance with default class if not existing then
+    * bind it before instancing activity.
+    *
+    * @param klass, the default Instigator decorator class, which will instance specific adapter in
+    *               the future, e.g., EmptyAdapter by EmptyInstigator, and delegate the recycler
+    *               view setup, and respond to click action to recycler view item.
+    **/
+   private void preEnsureBindInstigator(Class<? extends Deco> klass) {
+      if (getIntent() == null ||
+              getIntent().getExtras() == null ||
+              !getIntent().getExtras().containsKey(KEY.BUILDER)) {
+         getIntent().putExtra(KEY.BUILDER, new Builder().addDecorator(klass));
+      }
+
+      bind(getBuilder(getIntent().getSerializableExtra(KEY.BUILDER)));
+   }
+
+   private void initRecyclerView() {
       RecyclerView rv = (RecyclerView) findViewById(R.id.recycler);
       rv.setLayoutManager(getLayoutManager());
 
@@ -38,9 +56,9 @@ public class MainActivity extends DecoratedAct {
       } else {
          wrapAdapter = new WrapAdapter(adapter);
       }
+
       rv.setAdapter(wrapAdapter);
       setupRecyclerView(rv, wrapAdapter, adapter);
-      onViewCreated();
    }
 
    @Override protected void onDestroy() {
