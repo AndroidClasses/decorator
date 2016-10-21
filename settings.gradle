@@ -1,1 +1,4 @@
-include ':annotation', ':processor', ':sample', ':testmodule'
+include':sample'
+//include ':annotation'
+//include':processor'
+//include ':testmodule'

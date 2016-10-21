@@ -2,6 +2,9 @@ buildscript {
     repositories {
         mavenCentral()
         jcenter()
+        maven {
+            url 'https://oss.sonatype.org/content/repositories/snapshots/'
+        }
     }
     dependencies {
         // https://bitbucket.org/hvisser/android-apt/overview
@@ -13,6 +16,7 @@ buildscript {
 apply plugin: 'com.android.application'
 apply plugin: 'com.neenbedankt.android-apt'
 apply plugin: 'realm-android'
+apply plugin: 'maven'
 
 android {
     compileSdkVersion 23
@@ -20,8 +24,8 @@ android {
 
     defaultConfig {
         applicationId "com.eyeem.decorator.sample"
-        minSdkVersion 16
-        targetSdkVersion 23
+        minSdkVersion 15
+        targetSdkVersion 22
         versionCode 1
         versionName "1.0"
     }
@@ -37,12 +41,13 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
 
-    compile project(':annotation')
-    apt project(':processor')
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+//    compile project(':annotation')
+//    apt project(':processor')
+
+    compile fileTree(include: ['*.jar'], dir: 'libs')
 
     compile 'com.android.support:appcompat-v7:23.4.0'
     compile 'com.android.support:recyclerview-v7:23.4.0'
@@ -51,6 +56,7 @@ dependencies {
     compile 'com.android.support:preference-v7:23.4.0'
 
     compile 'com.eyeem.recyclerviewtools:library:0.3.0'
+
     compile 'com.jakewharton:butterknife:7.0.1'
     compile 'io.realm:android-adapters:1.2.2'
     compile 'de.hdodenhof:circleimageview:2.0.0'
@@ -59,4 +65,10 @@ dependencies {
     compile 'com.squareup.okhttp3:okhttp:3.3.1'
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
     compile 'com.squareup.retrofit2:converter-gson:2.1.0'
+
+    compile 'com.squareup:javapoet:1.7.0'
+// http://mvnrepository.com/artifact/org.jvnet.sorcerer/sorcerer-javac
+    compile group: 'org.jvnet.sorcerer', name: 'sorcerer-javac', version: '0.8'
 }
+
+apply from: '../gradle-mvn-push.gradle'
