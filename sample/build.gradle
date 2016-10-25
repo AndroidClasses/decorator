@@ -55,8 +55,8 @@ dependencies {
 
 //    compile project(':annotation')
 //    apt project(':processor')
-    debugCompile project(path: ':open:recyclerviewtool'/*, configuration: 'debug'*/)
-    releaseCompile project(path: ':open:recyclerviewtool'/*, configuration: 'release'*/)
+    debugCompile project(path: ':open:recyclerviewtool', configuration: 'debug')
+    releaseCompile project(path: ':open:recyclerviewtool', configuration: 'release')
 
 //    compile fileTree(include: ['*.jar'], dir: 'libs')
 
