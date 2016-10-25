@@ -48,11 +48,11 @@ public class MenuAdapterOptionsInstigator extends Deco implements Deco.MenuDecor
                   getDecorators().buildUpon()
                         .removeDecorator(MenuAdapterOptionsInstigator.class)
                         .addDecorator(HelloWorldTitleInstigator.class)
-                        .addDecorator(LoadingDecorator.class)
+                        .addDecorator(StaggeredLayoutManagerInstigator.class)
                         .addDecorator(TurnOnSwipeToRefresh.class)
                         .addDecorator(TurnOnLoadMore.class)
-                        .addDecorator(StaggeredLayoutManagerInstigator.class)
                         .addDecorator(SwitchToCardOnClick.class)
+                        .addDecorator(LoadingDecorator.class)
                         .addDecorator(PhotoImageAdapterDecorator.class)
             );
             return true;

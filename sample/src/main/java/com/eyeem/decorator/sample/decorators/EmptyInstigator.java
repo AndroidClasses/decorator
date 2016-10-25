@@ -48,7 +48,7 @@ public class EmptyInstigator extends Deco implements Deco.InstigateGetAdapter, O
                .addDecorator(DebugMenu.class)
                .addDecorator(ToolbarInstigator.class);
          i.putExtra(KEY.BUILDER, b);
-         i.putExtra(KEY.URL, EyeEm.PHOTOS_POPULAR);
+         i.putExtra(KEY.URL, EyeEm.USERS_POPULAR);
          getDecorated().startActivity(i);
       }
    }

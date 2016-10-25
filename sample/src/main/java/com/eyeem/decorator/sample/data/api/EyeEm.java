@@ -32,6 +32,7 @@ public class EyeEm {
    }
 
    // users
+   public static final String USERS_POPULAR = VERSION + "users/popular";
 
 
    private static final EyeEmService service;
